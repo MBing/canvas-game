@@ -1,20 +1,27 @@
 var canvas = document.getElementById('my-canvas');
 var context = canvas.getContext('2d');
 
-context.beginPath();
-context.rect(20, 40, 50, 50);
-context.fillStyle='#FF0000';
-context.fill();
-context.closePath();
+setInterval(draw, 10);
 
-context.beginPath();
-context.arc(240, 160, 20, 0, Math.PI*2, false);
-context.fillStyle='green';
-context.fill();
-context.closePath();
+var x = canvas.width / 2;
+var y = canvas.height -30;
 
-context.beginPath();
-context.rect(160, 10, 100, 40);
-context.strokeStyle='rgba(0, 0, 255, 0.5)';
-context.stroke();
-context.closePath();
+var dx = 2;
+var dy = -2;
+
+var ballRadius = 10;
+
+function drawBall() {
+    context.beginPath();
+    context.arc(x, y, ballRadius, 0, Math.PI*2);
+    context.fillStyle='green';
+    context.fill();
+    context.closePath();
+}
+
+function draw() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    x += dx;
+    y += dy;
+}
