@@ -147,4 +147,20 @@ function draw() {
     y += dy;
 }
 
+document.addEventListener('mousemove', mouseMoveHandler);
+
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+
+    // Also works but with some padding somehow:
+    // if (relativeX > 0 + paddleWidth/2 && relativeX < canvas.width - paddleWidth/2) {
+    if (relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth /2;
+    } else if (relativeX < 0) {
+        paddleX = 0;
+    } else if (relativeX > canvas.width) {
+        paddleX = canvas.width - paddleWidth;
+    }
+}
+
 setInterval(draw, 10);
